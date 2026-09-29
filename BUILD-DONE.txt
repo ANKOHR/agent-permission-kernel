@@ -1,0 +1,4 @@
+Pytest: 35 tests passed.
+Local implementation commit: ea2bfb1245a298e369026103fe016e7f2808755c
+
+Built APK as a Python CLI and deterministic capability kernel with named policy compiler errors, scoped grants, cumulative synthetic spend accounting, human escalation decisions with evidence, in-memory fixture adapters, ordered audit logging, and Markdown/HTML reports. Added end-to-end fixture scenarios, a full pytest suite, and generated demo audit, simulation, and HTML report artifacts. All operations are synthetic fixtures and do not access real accounts, host files, or production systems.
