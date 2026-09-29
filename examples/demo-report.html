@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Permission Kernel report</title>
+  <style>
+    body { font: 16px/1.5 system-ui, sans-serif; max-width: 1100px; margin: 2rem auto; padding: 0 1rem; color: #17212b; }
+    .banner { padding: 1rem; background: #fff1c2; border: 2px solid #9b6811; font-weight: 700; }
+    table { border-collapse: collapse; width: 100%; margin: 1rem 0 2rem; }
+    th, td { text-align: left; border: 1px solid #bdc7d0; padding: .5rem; vertical-align: top; }
+    th { background: #edf2f6; }
+    code { overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <h1>Agent Permission Kernel report</h1>
+  <p class="banner">HONESTY BOUNDARY: Synthetic fixtures only. This is a policy decision engine, not a real OS sandbox, real Gmail integration, or production security boundary.</p>
+  <p>All timestamps use the fixed deterministic fixture clock. Audit table order is event order.</p>
+  <h2>Agent capability matrix</h2>
+  <table><thead><tr><th>Agent</th><th>Capabilities</th><th>Spend</th><th>Cap</th></tr></thead><tbody><tr><td>fixture_writer</td><td>gmail.read, gmail.draft, fs.read:/data, fs.write:/tmp, spend.cap:$5, prod.ask</td><td>$5</td><td>$5</td></tr></tbody></table>
+  <h2>Denials by reason</h2>
+  <table><thead><tr><th>Reason</th><th>Count</th></tr></thead><tbody><tr><td>scope-exceeded</td><td>1</td></tr>
+<tr><td>spend-cap-hit</td><td>1</td></tr>
+<tr><td>unknown-capability</td><td>1</td></tr></tbody></table>
+  <h2>Ordered audit trail</h2>
+  <table><thead><tr><th>#</th><th>Agent</th><th>Operation</th><th>Target</th><th>Decision</th><th>Reason</th><th>Timestamp</th></tr></thead><tbody><tr><td>1</td><td>fixture_writer</td><td>gmail.read</td><td></td><td>allow</td><td>capability-granted</td><td>2026-09-29T00:00:00Z</td></tr>
+<tr><td>2</td><td>fixture_writer</td><td>gmail.draft</td><td>status-update</td><td>allow</td><td>capability-granted</td><td>2026-09-29T00:00:00Z</td></tr>
+<tr><td>3</td><td>fixture_writer</td><td>gmail.send</td><td>recipient@example.test</td><td>deny</td><td>unknown-capability</td><td>2026-09-29T00:00:00Z</td></tr>
+<tr><td>4</td><td>fixture_writer</td><td>fs.read</td><td>/data/readme.txt</td><td>allow</td><td>capability-granted</td><td>2026-09-29T00:00:00Z</td></tr>
+<tr><td>5</td><td>fixture_writer</td><td>fs.write</td><td>/data/unauthorized.txt</td><td>deny</td><td>scope-exceeded</td><td>2026-09-29T00:00:00Z</td></tr>
+<tr><td>6</td><td>fixture_writer</td><td>spend.charge</td><td>demo-invoice-001</td><td>allow</td><td>capability-granted</td><td>2026-09-29T00:00:00Z</td></tr>
+<tr><td>7</td><td>fixture_writer</td><td>spend.charge</td><td>demo-invoice-002</td><td>allow</td><td>capability-granted</td><td>2026-09-29T00:00:00Z</td></tr>
+<tr><td>8</td><td>fixture_writer</td><td>spend.charge</td><td>demo-invoice-003</td><td>deny</td><td>spend-cap-hit</td><td>2026-09-29T00:00:00Z</td></tr>
+<tr><td>9</td><td>fixture_writer</td><td>prod.deploy</td><td>prod/payments</td><td>escalate</td><td>needs-escalation</td><td>2026-09-29T00:00:00Z</td></tr></tbody></table>
+  <h2>Escalations</h2>
+  <table><thead><tr><th>ID</th><th>Agent</th><th>Target</th><th>Status</th></tr></thead><tbody><tr><td>esc-700b1d8dbe0d</td><td>fixture_writer</td><td>prod/payments</td><td>pending</td></tr></tbody></table>
+</body>
+</html>

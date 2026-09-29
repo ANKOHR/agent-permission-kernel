@@ -1,0 +1,21 @@
+name: privilege-escalation
+operations:
+  - agent: fixture_writer
+    op: gmail.send
+    target: recipient@example.test
+    expect:
+      decision: deny
+      reason: unknown-capability
+  - agent: fixture_writer
+    op: fs.write
+    target: /data/unauthorized.txt
+    expect:
+      decision: deny
+      reason: scope-exceeded
+  - agent: fixture_writer
+    op: prod.deploy
+    target: prod/payments
+    expect:
+      decision: escalate
+      reason: needs-escalation
+

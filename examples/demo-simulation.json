@@ -1,0 +1,183 @@
+{
+  "notice": "Synthetic fixtures only. This is a policy decision engine, not a real OS sandbox, real Gmail integration, or production security boundary.",
+  "operations_attempted": 9,
+  "passed": true,
+  "pending_escalations": 1,
+  "results": [
+    {
+      "adapter_result": {
+        "adapter": "synthetic-gmail",
+        "messages": [
+          {
+            "from": "fixture@example.test",
+            "id": "msg-001",
+            "subject": "Synthetic sample"
+          }
+        ]
+      },
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "expected": {
+        "decision": "allow",
+        "reason": "capability-granted"
+      },
+      "index": 1,
+      "matched": true,
+      "operation": "gmail.read",
+      "reason": "capability-granted",
+      "target": ""
+    },
+    {
+      "adapter_result": {
+        "adapter": "synthetic-gmail",
+        "draft": {
+          "id": "draft-001",
+          "target": "status-update"
+        }
+      },
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "expected": {
+        "decision": "allow",
+        "reason": "capability-granted"
+      },
+      "index": 2,
+      "matched": true,
+      "operation": "gmail.draft",
+      "reason": "capability-granted",
+      "target": "status-update"
+    },
+    {
+      "adapter_result": null,
+      "agent": "fixture_writer",
+      "decision": "deny",
+      "expected": {
+        "decision": "deny",
+        "reason": "unknown-capability"
+      },
+      "index": 3,
+      "matched": true,
+      "operation": "gmail.send",
+      "reason": "unknown-capability",
+      "target": "recipient@example.test"
+    },
+    {
+      "adapter_result": {
+        "adapter": "synthetic-filesystem",
+        "content": "Synthetic fixture file. No host files are read.",
+        "path": "/data/readme.txt"
+      },
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "expected": {
+        "decision": "allow",
+        "reason": "capability-granted"
+      },
+      "index": 4,
+      "matched": true,
+      "operation": "fs.read",
+      "reason": "capability-granted",
+      "target": "/data/readme.txt"
+    },
+    {
+      "adapter_result": null,
+      "agent": "fixture_writer",
+      "decision": "deny",
+      "expected": {
+        "decision": "deny",
+        "reason": "scope-exceeded"
+      },
+      "index": 5,
+      "matched": true,
+      "operation": "fs.write",
+      "reason": "scope-exceeded",
+      "target": "/data/unauthorized.txt"
+    },
+    {
+      "adapter_result": {
+        "adapter": "synthetic-spend-ledger",
+        "cap": "5",
+        "charged": "3",
+        "spent": "3",
+        "transaction": "demo-invoice-001"
+      },
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "details": {
+        "cap": "5",
+        "spent": "3"
+      },
+      "expected": {
+        "decision": "allow",
+        "reason": "capability-granted"
+      },
+      "index": 6,
+      "matched": true,
+      "operation": "spend.charge",
+      "reason": "capability-granted",
+      "target": "demo-invoice-001"
+    },
+    {
+      "adapter_result": {
+        "adapter": "synthetic-spend-ledger",
+        "cap": "5",
+        "charged": "2",
+        "spent": "5",
+        "transaction": "demo-invoice-002"
+      },
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "details": {
+        "cap": "5",
+        "spent": "5"
+      },
+      "expected": {
+        "decision": "allow",
+        "reason": "capability-granted"
+      },
+      "index": 7,
+      "matched": true,
+      "operation": "spend.charge",
+      "reason": "capability-granted",
+      "target": "demo-invoice-002"
+    },
+    {
+      "adapter_result": null,
+      "agent": "fixture_writer",
+      "decision": "deny",
+      "details": {
+        "cap": "5",
+        "requested": "1",
+        "spent": "5"
+      },
+      "expected": {
+        "decision": "deny",
+        "reason": "spend-cap-hit"
+      },
+      "index": 8,
+      "matched": true,
+      "operation": "spend.charge",
+      "reason": "spend-cap-hit",
+      "target": "demo-invoice-003"
+    },
+    {
+      "adapter_result": null,
+      "agent": "fixture_writer",
+      "decision": "escalate",
+      "escalation_id": "esc-700b1d8dbe0d",
+      "expected": {
+        "decision": "escalate",
+        "reason": "needs-escalation"
+      },
+      "index": 9,
+      "matched": true,
+      "operation": "prod.deploy",
+      "reason": "needs-escalation",
+      "target": "prod/payments"
+    }
+  ],
+  "scenario": "full-fixture-demo",
+  "spend": {
+    "fixture_writer": "5"
+  }
+}

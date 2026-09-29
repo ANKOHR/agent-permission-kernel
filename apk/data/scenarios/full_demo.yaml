@@ -1,0 +1,59 @@
+name: full-fixture-demo
+operations:
+  - agent: fixture_writer
+    op: gmail.read
+    expect:
+      decision: allow
+      reason: capability-granted
+  - agent: fixture_writer
+    op: gmail.draft
+    target: status-update
+    expect:
+      decision: allow
+      reason: capability-granted
+  - agent: fixture_writer
+    op: gmail.send
+    target: recipient@example.test
+    expect:
+      decision: deny
+      reason: unknown-capability
+  - agent: fixture_writer
+    op: fs.read
+    target: /data/readme.txt
+    expect:
+      decision: allow
+      reason: capability-granted
+  - agent: fixture_writer
+    op: fs.write
+    target: /data/unauthorized.txt
+    expect:
+      decision: deny
+      reason: scope-exceeded
+  - agent: fixture_writer
+    op: spend.charge
+    target: demo-invoice-001
+    cost: 3
+    expect:
+      decision: allow
+      reason: capability-granted
+  - agent: fixture_writer
+    op: spend.charge
+    target: demo-invoice-002
+    cost: 2
+    expect:
+      decision: allow
+      reason: capability-granted
+  - agent: fixture_writer
+    op: spend.charge
+    target: demo-invoice-003
+    cost: 1
+    expect:
+      decision: deny
+      reason: spend-cap-hit
+  - agent: fixture_writer
+    op: prod.deploy
+    target: prod/payments
+    expect:
+      decision: escalate
+      reason: needs-escalation
+

@@ -1,0 +1,25 @@
+name: spend-overflow
+stop_on_reason: spend-cap-hit
+operations:
+  - agent: fixture_writer
+    op: spend.charge
+    target: invoice-001
+    cost: 3
+    expect:
+      decision: allow
+      reason: capability-granted
+  - agent: fixture_writer
+    op: spend.charge
+    target: invoice-002
+    cost: 2
+    expect:
+      decision: allow
+      reason: capability-granted
+  - agent: fixture_writer
+    op: spend.charge
+    target: invoice-003
+    cost: 1
+    expect:
+      decision: deny
+      reason: spend-cap-hit
+

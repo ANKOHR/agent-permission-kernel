@@ -1,0 +1,78 @@
+{
+  "count": 9,
+  "events": [
+    {
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "operation": "gmail.read",
+      "reason": "capability-granted",
+      "target": "",
+      "timestamp": "2026-09-29T00:00:00Z"
+    },
+    {
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "operation": "gmail.draft",
+      "reason": "capability-granted",
+      "target": "status-update",
+      "timestamp": "2026-09-29T00:00:00Z"
+    },
+    {
+      "agent": "fixture_writer",
+      "decision": "deny",
+      "operation": "gmail.send",
+      "reason": "unknown-capability",
+      "target": "recipient@example.test",
+      "timestamp": "2026-09-29T00:00:00Z"
+    },
+    {
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "operation": "fs.read",
+      "reason": "capability-granted",
+      "target": "/data/readme.txt",
+      "timestamp": "2026-09-29T00:00:00Z"
+    },
+    {
+      "agent": "fixture_writer",
+      "decision": "deny",
+      "operation": "fs.write",
+      "reason": "scope-exceeded",
+      "target": "/data/unauthorized.txt",
+      "timestamp": "2026-09-29T00:00:00Z"
+    },
+    {
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "operation": "spend.charge",
+      "reason": "capability-granted",
+      "target": "demo-invoice-001",
+      "timestamp": "2026-09-29T00:00:00Z"
+    },
+    {
+      "agent": "fixture_writer",
+      "decision": "allow",
+      "operation": "spend.charge",
+      "reason": "capability-granted",
+      "target": "demo-invoice-002",
+      "timestamp": "2026-09-29T00:00:00Z"
+    },
+    {
+      "agent": "fixture_writer",
+      "decision": "deny",
+      "operation": "spend.charge",
+      "reason": "spend-cap-hit",
+      "target": "demo-invoice-003",
+      "timestamp": "2026-09-29T00:00:00Z"
+    },
+    {
+      "agent": "fixture_writer",
+      "decision": "escalate",
+      "operation": "prod.deploy",
+      "reason": "needs-escalation",
+      "target": "prod/payments",
+      "timestamp": "2026-09-29T00:00:00Z"
+    }
+  ],
+  "notice": "Synthetic fixtures only. This is a policy decision engine, not a real OS sandbox, real Gmail integration, or production security boundary."
+}
