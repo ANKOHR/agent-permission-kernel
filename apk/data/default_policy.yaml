@@ -1,0 +1,11 @@
+version: 1
+agents:
+  fixture_writer:
+    capabilities:
+      - gmail.read
+      - gmail.draft
+      - fs.read:/data
+      - fs.write:/tmp
+      - spend.cap:$5
+      - prod.ask
+

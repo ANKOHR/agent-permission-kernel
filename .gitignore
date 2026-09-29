@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+build/
+dist/
+*.egg-info/
+.apk/
+pk-prompt.txt
+pk-launch.py
+pk-codex.log
+*.log
+
